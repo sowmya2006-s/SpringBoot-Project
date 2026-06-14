@@ -12,7 +12,7 @@ import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import jakarta.persistence.Table;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Data
 @Table(name = "products")
@@ -30,5 +30,7 @@ public class Product {
     private int stockQuantity;
     private String category;
     private int availabilityStatus;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+
     private Date releaseDate;
 }

@@ -3,6 +3,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.example.ecom_proj.repo.ProductRepo;
 import com.example.ecom_proj.model.Product;
+
 import java.util.List;
 
 @Service
@@ -14,6 +15,9 @@ public class ProductService {
         return repo.findAll();
     }
 
+   public Product getProductById(Long id) {
+    return repo.findById(id).orElse(null);
+}
 
     // Service logic for product operations
 }
