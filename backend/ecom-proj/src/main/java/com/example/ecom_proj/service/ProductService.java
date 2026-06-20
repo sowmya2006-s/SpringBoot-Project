@@ -1,13 +1,16 @@
 package com.example.ecom_proj.service;
-import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
-import com.example.ecom_proj.repo.ProductRepo;
-import com.example.ecom_proj.model.Product;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.ecom_proj.model.Product;
+import com.example.ecom_proj.repo.ProductRepo;
+
 @Service
 public class ProductService {
+
     @Autowired
     private ProductRepo repo;
 
@@ -15,9 +18,11 @@ public class ProductService {
         return repo.findAll();
     }
 
-   public Product getProductById(Long id) {
-    return repo.findById(id).orElse(null);
-}
+    public Product getProductById(Long id) {
+        return repo.findById(id).orElse(null);
+    }
 
-    // Service logic for product operations
+    public Product addProduct(Product product) {
+        return repo.save(product);
+    }
 }
