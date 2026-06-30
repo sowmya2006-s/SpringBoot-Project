@@ -50,7 +50,7 @@ public ResponseEntity<Product> getProductById(
     return ResponseEntity.ok(product);
 }
 
-@PostMapping("/product")
+@PostMapping(value = "/product", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 public ResponseEntity<?> addProduct(
         @RequestPart("product") Product product,
         @RequestPart("imageFile") MultipartFile imageFile) {

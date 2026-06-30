@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { useState } from "react";
 import AppContext from "../Context/Context";
 import axios from "../axios";
-// import UpdateProduct from "./UpdateProduct";
+import UpdateProduct from "./UpdateProduct";
 const Product = () => {
   const { id } = useParams();
   const { data, addToCart, removeFromCart, cart, refreshData } =
@@ -16,7 +16,7 @@ const Product = () => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/api/products/product/${id}`
+          `http://localhost:8080/api/product/${id}`
         );
         setProduct(response.data);
         if (response.data.imageName) {
@@ -80,19 +80,19 @@ const Product = () => {
             <span>{product.category}</span>
             <h1>{product.name}</h1>
             <h5>{product.brand}</h5>
-            <p>{product.desc}</p>
+            <p>{product.description}</p>
           </div>
 
           <div className="product-price">
             <span>{"$" + product.price}</span>
             <button
               className={`cart-btn ${
-                !product.available ? "disabled-btn" : ""
+                !product.productAvailable ? "disabled-btn" : ""
               }`}
               onClick={handlAddToCart}
-              disabled={!product.available}
+              disabled={!product.productAvailable}
             >
-              {product.available ? "Add to cart" : "Out of Stock"}
+              {product.productAvailable ? "Add to cart" : "Out of Stock"}
             </button>
             <h6>
               Stock Available :{" "}
@@ -105,7 +105,7 @@ const Product = () => {
               <i> {new Date(product.releaseDate).toLocaleDateString()}</i>
             </p>
           </div>
-          {/* <div className="update-button ">
+          <div className="update-button ">
             <button
               className="btn btn-primary"
               type="button"
@@ -113,7 +113,7 @@ const Product = () => {
             >
               Update
             </button>
-        
+            {/* <UpdateProduct product={product} onUpdate={handleUpdate} /> */}
             <button
               className="btn btn-primary"
               type="button"
@@ -121,7 +121,7 @@ const Product = () => {
             >
               Delete
             </button>
-          </div> */}
+          </div>
         </div>
       </div>
     </>
